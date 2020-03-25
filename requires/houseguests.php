@@ -3,16 +3,14 @@
     Name: Josh Lavallee                            -
     Course: WEBD-2006 Section 1                    -
     Date: March 21st/2020                          -
-    Description: Home Page                         -
+    Description: Houseguests Page                  -
 ---------------------------------------------------->
 
 <?PHP
     $title = 'Home';
-    require_once('requires/header.php');
+    require_once 'header.php';
 ?>
-    <main>
 
-    </main>
 <?PHP
-    require_once('requires/footer.php');
+    require_once 'footer.php';
 ?>

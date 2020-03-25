@@ -8,11 +8,9 @@
 
 <?PHP
     $title = 'Home';
-    require_once('requires/header.php');
+    require_once 'header.php';
 ?>
-    <main>
 
-    </main>
 <?PHP
-    require_once('requires/footer.php');
+    require_once 'footer.php';
 ?>
