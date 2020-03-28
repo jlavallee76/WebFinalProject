@@ -9,10 +9,8 @@
 <?PHP
     $title = 'Login';
 
-    require_once('requires/header.php');
+    require('requires/header.php');
     require('connect.php');
-
-    $validLogin = false;
 
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -31,11 +29,14 @@
 
         if($password == $selectUser['password'])
         {
-            $validLogin = true;
             echo "Login Succeeded.";
 
+            session_start();
+
+            $_SESSION["LoggedIn"] = true;
+            $_SESSION["Username"] = $username;
+
             header("Location: episodes.php");
-            exit;  
         }
         else
         {
@@ -72,5 +73,5 @@
         </div>
     </main>
 <?PHP
-    require_once('requires/footer.php');
+    require('requires/footer.php');
 ?>

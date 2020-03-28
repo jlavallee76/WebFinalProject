@@ -9,7 +9,7 @@
 <?PHP
     $title = 'Sign Up';
     
-    require_once('requires/header.php');
+    require('requires/header.php');
     require('connect.php');
     
     $validRegistation = true;
@@ -70,6 +70,11 @@
 
         $createUsertatement->execute();
 
+        session_start();
+
+        $_SESSION["LoggedIn"] = true;
+        $_SESSION["Username"] = $username;
+
         header("Location: episodes.php");
         exit;  
     }
@@ -116,5 +121,5 @@
         </div>
     </main>
 <?PHP
-    require_once('requires/footer.php');
+    require('requires/footer.php');
 ?>

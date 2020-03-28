@@ -8,7 +8,9 @@
 
 <?PHP
     $title = 'Houseguests';
-    require_once('requires/header.php');
+
+    session_start();
+    require('requires/header.php');
 ?>
     <main>
         <div class="team-boxed">
@@ -31,5 +33,5 @@
         </div>
     </main>
 <?PHP
-    require_once('requires/footer.php');
+    require('requires/footer.php');
 ?>

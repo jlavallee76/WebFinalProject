@@ -5,6 +5,9 @@
     Date: March 21st/2020                          -
     Description: Header Constant                   -
 ---------------------------------------------------->
+<?PHP
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -23,7 +26,14 @@
 
 <body style="background-color: #f0f0f0;">
     <nav class="navbar navbar-dark navbar-expand-md sticky-top navigation-clean-button" style="background-color: rgba(0,0,0,0.83);">
-        <div class="container"><a class="navbar-brand" href="index.php" style="color: rgb(255,255,255);"><img data-bs-hover-animate="pulse" src="assets/img/logo.png" style="width: 121px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container">
+            <a class="navbar-brand" href="index.php" style="color: rgb(255,255,255);">
+                <img data-bs-hover-animate="pulse" src="assets/img/logo.png" style="width: 121px;">
+            </a>
+            <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div
                 class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav mr-auto">
@@ -32,10 +42,17 @@
                     <li class="nav-item" role="presentation"><a class="nav-link" data-bs-hover-animate="pulse" href="houseguests.php" style="color: rgb(255,255,255);">Houseguests</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" data-bs-hover-animate="pulse" href="fantasy.php" style="color: rgb(255,255,255);">Fantasy</a></li>
                 </ul>
-                <span class="navbar-text actions"> 
-                <a class="btn btn-light action-button" role="button" data-bs-hover-animate="jello" href="signup.php" style="background-color: rgba(218,4,3,0);margin: 0px;margin-right: 14px;">Sign Up</a>
-                <a class="btn btn-light action-button" role="button" data-bs-hover-animate="jello" href="login.php" style="background-color: rgb(218,4,3);">Log In</a>
-                </span>
+                <?PHP if(isset($_SESSION["LoggedIn"])): ?>
+                    <span class="navbar-text actions">                   
+                        <img class="rounded-circle" src="" width="60px" height="60px"  role="button" data-bs-hover-animate="jello" href="login.php" href="profile.php" style="background-color: rgb(218,4,3);padding: 2px;" />
+                        <a class="btn btn-light action-button" role="button" data-bs-hover-animate="jello" href="logout.php" style="background-color: rgb(218,4,3);">Log Out</a>
+                    </span>
+                <?PHP else : ?>
+                    <span class="navbar-text actions"> 
+                        <a class="btn btn-light action-button" role="button" data-bs-hover-animate="jello" href="signup.php" style="background-color: rgba(218,4,3,0);margin: 0px;margin-right: 14px;">Sign Up</a>
+                        <a class="btn btn-light action-button" role="button" data-bs-hover-animate="jello" href="login.php" style="background-color: rgb(218,4,3);">Log In</a>
+                    </span>
+                <?PHP endif ?>
             </div>
         </div>
     </nav>

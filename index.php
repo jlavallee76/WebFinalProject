@@ -8,11 +8,13 @@
 
 <?PHP
     $title = 'Home';
-    require_once('requires/header.php');
+
+    session_start();
+    require('requires/header.php');
 ?>
     <main>
 
     </main>
 <?PHP
-    require_once('requires/footer.php');
+    require('requires/footer.php');
 ?>

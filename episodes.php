@@ -8,11 +8,11 @@
 
 <?PHP
     $title = 'Episodes';
-    require_once('requires/header.php');
+
+    session_start();
+    require('requires/header.php');
 ?>
-    <main>
-        <p>You are not currently signed in, <a href="login.php">Login Here</a>. Not yet a member? <a href="signup.php">Sign Up Here</a></p>
-        
+    <main>       
         <div class="border-danger shadow-lg highlight-phone" style="margin-bottom: 25px;background-color: rgba(105,105,105,0.06);margin-top: 25px;padding: 40px;">
             <div class="container">
                 <div class="row">
@@ -32,5 +32,5 @@
         </div>
     </main>
 <?PHP
-    require_once('requires/footer.php');
+    require('requires/footer.php');
 ?>
