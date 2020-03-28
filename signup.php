@@ -9,14 +9,15 @@
 <?PHP
     $title = 'Sign Up';
     require_once('requires/header.php');
-
+    require('requires/connect.php');
+    
     var_dump($_POST);
 ?>
     <main>
         <div class="register-photo" style="background-color: #f0f0f0;">
             <div class="form-container">
                 <div class="image-holder" style="background-image: url(&quot;assets/img/eye.jpg&quot;);height: 370px;width: 334px;"></div>
-                <form method="post" action="process.php">
+                <form method="post" action="requires/process.php">
 
                     <h2 class="text-center" style="color: rgb(218,4,3);"><strong>Create</strong> an account.</h2>
                     

@@ -9,11 +9,12 @@
 <?PHP
     $title = 'Login';
     require_once('requires/header.php');
+    require('requires/connect.php');
 ?>
     <main>
         <div class="article-dual-column"></div>
             <div class="login-clean" style="background-color: #f0f0f0;">
-                <form class="border-secondary shadow" method="post" action="authenticate.php">
+                <form class="border-secondary shadow" method="post" action="requires/process.php">
                     
                     <h2 class="sr-only">Login Form</h2>
                     
