@@ -8,13 +8,45 @@
 
 <?PHP
     $title = 'Login';
+
     require_once('requires/header.php');
-    require('requires/connect.php');
+    require('connect.php');
+
+    $validLogin = false;
+
+    $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+    if($_POST && (!empty($_POST['username']) && (!empty($_POST['password']))))
+	{
+        $getUserQuery = "SELECT username, password
+                         FROM users
+                         WHERE username = :username";
+
+        $getUserStatement = $db->prepare($getUserQuery);
+        $getUserStatement->bindValue('username', $username, PDO::PARAM_STR);
+        $getUserStatement->bindValue('username', $username, PDO::PARAM_STR);
+        $getUserStatement->execute();
+        $selectUser = $getUserStatement->fetch();
+
+        if($password == $selectUser['password'])
+        {
+            $validLogin = true;
+            echo "Login Succeeded.";
+
+            header("Location: episodes.php");
+            exit;  
+        }
+        else
+        {
+            echo "Login failed";
+        }
+    }
 ?>
     <main>
         <div class="article-dual-column"></div>
             <div class="login-clean" style="background-color: #f0f0f0;">
-                <form class="border-secondary shadow" method="post" action="requires/process.php">
+                <form class="border-secondary shadow" method="post" action="login.php">
                     
                     <h2 class="sr-only">Login Form</h2>
                     
@@ -23,7 +55,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <input class="form-control" type="email" name="email" placeholder="Email" required="">
+                        <input class="form-control" type="text" name="username" placeholder="Username" required="" minlength="6" maxlength="20">
                     </div>
                     
                     <div class="form-group">
