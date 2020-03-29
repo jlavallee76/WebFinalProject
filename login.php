@@ -33,10 +33,13 @@
         $getUserStatement->execute();
         $selectUser = $getUserStatement->fetch();
 
-        if($password == $selectUser['password'])
+        if(empty($selectUser))
+        {
+            array_push($errors, "nouser_exists");
+        }
+        elseif($_SESSION["Password"] == $selectUser['password'])
         {
             $_SESSION["LoggedIn"] = true;
-            $_SESSION["Username"] = $username;
 
             header("Location: episodes.php");
         }
@@ -62,6 +65,9 @@
                         <?PHP if(isset($_SESSION["Username"])) : ?>
                             value="<?= $_SESSION["Username"]?>"
                         <?PHP endif ?>>
+                        <?PHP if(in_array("nouser_exists", $errors)) : ?>
+                            <p style="color: rgb(218,4,3);">This username does not exist.<p>
+                        <?PHP endif ?>
                     </div>
                     
                     <div class="form-group">
