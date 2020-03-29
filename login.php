@@ -9,11 +9,17 @@
 <?PHP
     $title = 'Login';
 
+    session_start();
     require('requires/header.php');
     require('connect.php');
 
+    $errors = array();
+
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $_SESSION["Username"] = $username;
+
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $_SESSION["Password"] = $password;
 
     if($_POST && (!empty($_POST['username']) && (!empty($_POST['password']))))
 	{
@@ -29,10 +35,6 @@
 
         if($password == $selectUser['password'])
         {
-            echo "Login Succeeded.";
-
-            session_start();
-
             $_SESSION["LoggedIn"] = true;
             $_SESSION["Username"] = $username;
 
@@ -40,7 +42,7 @@
         }
         else
         {
-            echo "Login failed";
+            array_push($errors, "incorrect_password");
         }
     }
 ?>
@@ -56,11 +58,17 @@
                     </div>
                     
                     <div class="form-group">
-                        <input class="form-control" type="text" name="username" placeholder="Username" required="" minlength="6" maxlength="20">
+                        <input class="form-control" type="text" name="username" placeholder="Username" required="" minlength="6" maxlength="20"
+                        <?PHP if(isset($_SESSION["Username"])) : ?>
+                            value="<?= $_SESSION["Username"]?>"
+                        <?PHP endif ?>>
                     </div>
                     
                     <div class="form-group">
                         <input class="form-control" type="password" name="password" placeholder="Password" required="" minlength="6" maxlength="20">
+                        <?PHP if(in_array("incorrect_password", $errors)) : ?>
+                            <p style="color: rgb(218,4,3);">Incorrect password, please try again.<p>
+                        <?PHP endif ?>
                     </div>
                     
                     <div class="form-group">

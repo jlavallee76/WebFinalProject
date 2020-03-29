@@ -9,15 +9,24 @@
 <?PHP
     $title = 'Sign Up';
     
+    session_start();
     require('requires/header.php');
     require('connect.php');
     
     $validRegistation = true;
+    $errors = array();
 
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $_SESSION["Username"] = $username;
+
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $_SESSION["Email"] = $email;
+
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $_SESSION["Password"] = $password;
+
     $password_repeat = filter_input(INPUT_POST, 'password-repeat', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $_SESSION["PasswordRepeat"] = $password_repeat;
 
     if($_POST && (!empty($_POST['username']) && (!empty($_POST['email'])) && (!empty($_POST['password']))))
 	{
@@ -32,7 +41,7 @@
 
         if(!empty($selectUsers))
         {
-            echo "This user exists.";
+            array_push($errors, "user_exists");
             $validRegistation = false;
         }
 
@@ -47,13 +56,13 @@
 
         if(!empty($selectEmails))
         {
-            echo "This e-mail has been used.";
+            array_push($errors, "email_exists");
             $validRegistation = false;
         }
 
         if($password != $password_repeat)
         {
-            echo "The passwords do not match.";
+            array_push($errors, "password_mismatch");
             $validRegistation = false;
         }
 
@@ -69,8 +78,6 @@
         $createUsertatement->bindValue(':password', $password);
 
         $createUsertatement->execute();
-
-        session_start();
 
         $_SESSION["LoggedIn"] = true;
         $_SESSION["Username"] = $username;
@@ -89,16 +96,33 @@
                     <h2 class="text-center" style="color: rgb(218,4,3);"><strong>Create</strong> an account.</h2>
                     
                     <div class="form-group">
-                        <input class="form-control" type="text" name="username" placeholder="Username" required="" minlength="6" maxlength="20">
+                        <input class="form-control" type="text" name="username" placeholder="Username" required="" minlength="6" maxlength="20" 
+                        <?PHP if(isset($_SESSION["Username"])) : ?>
+                            value="<?= $_SESSION["Username"]?>"
+                        <?PHP endif ?>
+                        >
+                        <?PHP if(in_array("user_exists", $errors)) : ?>
+                            <p style="color: rgb(218,4,3);">This username has been taken.<p>
+                        <?PHP endif ?>
                     </div>
 
                     <div class="form-group">
-                        <input class="form-control" type="email" name="email" placeholder="Email" autocomplete="on" required="">
+                        <input class="form-control" type="email" name="email" placeholder="Email" autocomplete="on" required=""
+                        <?PHP if(isset($_SESSION["Email"])) : ?>
+                            value="<?= $_SESSION["Email"]?>"
+                        <?PHP endif ?>
+                        >
+                        <?PHP if(in_array("email_exists", $errors)) : ?>
+                            <p style="color: rgb(218,4,3);">This e-mail has already been used.<p>
+                        <?PHP endif ?>
                     </div>
                     
                     <div class="form-group">
                         <input class="form-control" type="password" name="password" placeholder="Password" required="" minlength="6" maxlength="20">
                     </div>
+                        <?PHP if(in_array("password_mismatch", $errors)) : ?>
+                            <p style="color: rgb(218,4,3);">The passwords do not match.<p>
+                        <?PHP endif ?>
                     
                     <div class="form-group">
                         <input class="form-control" type="password" name="password-repeat" placeholder="Password (repeat)" required="" minlength="6" maxlength="20">
@@ -106,7 +130,7 @@
                     
                     <div class="form-group">
                         <div class="form-check">
-                            <label class="form-check-label"><input class="form-check-input" type="checkbox">I agree to the license terms.</label>
+                            <label class="form-check-label"><input class="form-check-input" type="checkbox" required="">I agree to the license terms.</label>
                         </div>
                     </div>
                     
@@ -115,7 +139,6 @@
                     </div>
                     
                     <a class="already" href="login.php" style="color: rgb(218,4,3)">You already have an account? Login here.</a>
-
                 </form>
             </div>
         </div>
