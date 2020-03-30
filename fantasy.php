@@ -17,32 +17,23 @@
             <div class="container">
                 <div class="intro">
                     <h2 class="text-center">Fantasy Big Brother</h2>
-                    <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae. </p>
+                    <p class="text-center">Under Construction!</p>
                 </div>
                 <div class="row features">
-                    <div class="col-sm-6 col-lg-4 item"><i class="fa fa-map-marker icon"></i>
-                        <h3 class="name">Works everywhere</h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                    <div class="col-sm-6 col-lg-4 item">
+                        <i class="fa fa-map-marker icon"></i>
+                        <h3 class="name">All Countries</h3>
+                        <p class="description">Play BB Fantasy in for any season in any country! USA, Canada, Austrailia, Etc.</p>
                     </div>
-                    <div class="col-sm-6 col-lg-4 item"><i class="fa fa-clock-o icon"></i>
-                        <h3 class="name">Always available</h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                    <div class="col-sm-6 col-lg-4 item">
+                        <i class="fa fa-money icon"></i>
+                        <h3 class="name">Win Real Money</h3>
+                        <p class="description">Set league buy-in or play weekly for a chance to win money based on your players preformances.</p>
                     </div>
-                    <div class="col-sm-6 col-lg-4 item"><i class="fa fa-list-alt icon"></i>
+                    <div class="col-sm-6 col-lg-4 item">
+                        <i class="fa fa-list-alt icon"></i>
                         <h3 class="name">Customizable</h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
-                    </div>
-                    <div class="col-sm-6 col-lg-4 item"><i class="fa fa-leaf icon"></i>
-                        <h3 class="name">Organic</h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
-                    </div>
-                    <div class="col-sm-6 col-lg-4 item"><i class="fa fa-plane icon"></i>
-                        <h3 class="name">Fast</h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
-                    </div>
-                    <div class="col-sm-6 col-lg-4 item"><i class="fa fa-phone icon"></i>
-                        <h3 class="name">Mobile-first</h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                        <p class="description">Create your own league with up to 8 friends, or join an public league with strangers.</p>
                     </div>
                 </div>
             </div>

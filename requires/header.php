@@ -44,8 +44,10 @@
                     <li class="nav-item" role="presentation"><a class="nav-link" data-bs-hover-animate="pulse" href="fantasy.php" style="color: rgb(255,255,255);">Fantasy</a></li>
                 </ul>
                 <?PHP if(isset($_SESSION["LoggedIn"])): ?>
-                    <span class="navbar-text actions">                   
-                        <img class="rounded-circle" src="" width="60px" height="60px"  role="button" data-bs-hover-animate="jello" href="login.php" href="profile.php" style="background-color: rgb(218,4,3);padding: 2px;" />
+                    <span class="navbar-text actions">
+                        <a href="myprofile.php">                   
+                            <img class="rounded-circle" src="" width="60px" height="60px"  role="button" data-bs-hover-animate="jello" style="background-color: rgb(218,4,3);padding: 2px;" />
+                        </a>
                         <a class="btn btn-light action-button" role="button" data-bs-hover-animate="jello" href="logout.php" style="background-color: rgb(218,4,3);">Log Out</a>
                     </span>
                 <?PHP else : ?>

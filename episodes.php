@@ -20,9 +20,16 @@
                     <div class="intro">
                         <h2 style="color: rgb(22,23,25);font-size: 38px;">Episode #: Name</h2>
                         <p style="height: 68px;color: rgb(22,23,25);font-size: 21px;">Air Date:<br>Events:<br></p>
-                    </div><button class="btn btn-primary btn-lg border rounded" data-bs-hover-animate="pulse" type="button" style="width: 130px;height: 50px;background-color: rgb(218,4,3);margin: 0px;margin-right: 10px;">View Posts</button><button class="btn btn-primary btn-lg border rounded"
-                        data-bs-hover-animate="pulse" type="button" style="width: 130px;height: 50px;background-color: rgb(218,4,3);">Comment</button></div>
-                <div class="col-sm-4">
+                    </div>
+                        <a href="#">
+                            <button class="btn btn-primary btn-lg border rounded" data-bs-hover-animate="pulse" type="button" style="width: 130px;height: 50px;background-color: rgb(218,4,3);margin: 0px;margin-right: 10px;">View Posts</button>
+                        </a>
+                        <a href="createpost.php">
+                            <button class="btn btn-primary btn-lg border rounded" data-bs-hover-animate="pulse" type="button" style="width: 130px;height: 50px;background-color: rgb(218,4,3);">Comment</button>
+                        </a>
+                        </div>
+                
+                        <div class="col-sm-4">
                     <div class="d-none d-md-block iphone-mockup"><img class="device" src="assets/img/iphone.svg">
                         <div class="screen"></div>
                     </div>
