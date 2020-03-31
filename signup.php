@@ -67,24 +67,27 @@
         }
 
         if($validRegistation)
-    {
-        $createUserQuery = "INSERT INTO users (username, email, password, date_created) 
-                            VALUES (:username, :email, :password, NOW())";
+        {
+            $password = password_hash($password, PASSWORD_DEFAULT); //Encrypting the users password.
+            
+
+            $createUserQuery = "INSERT INTO users (username, email, password, date_created) 
+                                VALUES (:username, :email, :password, NOW())";
 
 
-        $createUsertatement = $db->prepare($createUserQuery);
-        $createUsertatement->bindValue(':username', $username);
-        $createUsertatement->bindValue(':email', $email);
-        $createUsertatement->bindValue(':password', $password);
+            $createUsertatement = $db->prepare($createUserQuery);
+            $createUsertatement->bindValue(':username', $username);
+            $createUsertatement->bindValue(':email', $email);
+            $createUsertatement->bindValue(':password', $password);
 
-        $createUsertatement->execute();
+            $createUsertatement->execute();
 
-        $_SESSION["LoggedIn"] = true;
-        $_SESSION["Username"] = $username;
+            $_SESSION["LoggedIn"] = true;
+            $_SESSION["Username"] = $username;
 
-        header("Location: episodes.php");
+            header("Location: episodes.php");
         exit;  
-    }
+        }
     }
 ?>
     <main>

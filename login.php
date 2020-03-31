@@ -17,9 +17,9 @@
 
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $_SESSION["Username"] = $username;
-
+    
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $_SESSION["Password"] = $password;
+
 
     if($_POST && (!empty($_POST['username']) && (!empty($_POST['password']))))
 	{
@@ -29,7 +29,6 @@
 
         $getUserStatement = $db->prepare($getUserQuery);
         $getUserStatement->bindValue('username', $username, PDO::PARAM_STR);
-        $getUserStatement->bindValue('username', $username, PDO::PARAM_STR);
         $getUserStatement->execute();
         $selectUser = $getUserStatement->fetch();
 
@@ -37,9 +36,10 @@
         {
             array_push($errors, "nouser_exists");
         }
-        elseif($_SESSION["Password"] == $selectUser['password'])
+        elseif(password_verify($password, $selectUser['password']))
         {
             $_SESSION["LoggedIn"] = true;
+            $_SESSION["Password"] = $password;
 
             header("Location: episodes.php");
         }
