@@ -11,7 +11,7 @@
 
     session_start();
     require('requires/header.php');
-    require('connect.php');
+
 
     $errors = array();
 
@@ -23,7 +23,7 @@
 
     if($_POST && (!empty($_POST['username']) && (!empty($_POST['password']))))
 	{
-        $getUserQuery = "SELECT username, password
+        $getUserQuery = "SELECT *
                          FROM users
                          WHERE username = :username";
 
@@ -39,7 +39,6 @@
         elseif(password_verify($password, $selectUser['password']))
         {
             $_SESSION["LoggedIn"] = true;
-            $_SESSION["Password"] = $password;
 
             header("Location: episodes.php");
         }

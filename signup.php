@@ -11,7 +11,6 @@
     
     session_start();
     require('requires/header.php');
-    require('connect.php');
     
     $validRegistation = true;
     $errors = array();
@@ -75,18 +74,17 @@
                                 VALUES (:username, :email, :password, NOW())";
 
 
-            $createUsertatement = $db->prepare($createUserQuery);
-            $createUsertatement->bindValue(':username', $username);
-            $createUsertatement->bindValue(':email', $email);
-            $createUsertatement->bindValue(':password', $password);
+            $createUserStatement = $db->prepare($createUserQuery);
+            $createUserStatement->bindValue(':username', $username);
+            $createUserStatement->bindValue(':email', $email);
+            $createUserStatement->bindValue(':password', $password);
 
-            $createUsertatement->execute();
+            $createUserStatement->execute();
 
             $_SESSION["LoggedIn"] = true;
-            $_SESSION["Username"] = $username;
 
             header("Location: episodes.php");
-        exit;  
+            exit;  
         }
     }
 ?>
