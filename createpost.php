@@ -11,12 +11,15 @@
 
     session_start();
     require('requires/header.php');
+
+    $episode = $_GET['episode'];
+
 ?>
     <main>  
         <section class="td-form" style="width: 821px;">
             <div class="row td-form-wrapper" style="width: 882px;margin: 25px;">
                 <div class="col td-glass" style="width: 876px;color: rgb(255,255,255);background-color: rgba(218,3,3,0);opacity: 1;">
-                    <form class="td-form-wrapper" style="background-color: rgba(255,255,255,0.98);color: rgb(0,0,0);">
+                    <form method="post" action="discussion.php?<?= episode['episodeid'] ?>" class="td-form-wrapper" style="background-color: rgba(255,255,255,0.98);color: rgb(0,0,0);">
                         <h1 class="text-center" style="font-family: Lora, serif;color: #000000;">New Post</h1>
                         <div class="form-group">
                             <div class="col-md-12">

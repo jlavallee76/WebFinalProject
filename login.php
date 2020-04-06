@@ -39,6 +39,7 @@
         elseif(password_verify($password, $selectUser['password']))
         {
             $_SESSION["LoggedIn"] = true;
+            $_SESSION["ProfilePic"] = $selectUser['profile_photo'];
 
             header("Location: episodes.php");
         }

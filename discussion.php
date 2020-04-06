@@ -58,6 +58,11 @@
                 </div>
             </div>
             <div>
+                <a href="createpost.php">
+                    <button class="btn btn-primary btn-block border rounded d-inline-flex flex-shrink-1 flex-fill justify-content-between align-items-center align-content-center justify-content-sm-center align-items-sm-start" data-bs-hover-animate="pulse" type="button" style="background-color: rgb(218,4,3);margin: 0px;margin-top: 10px;margin-bottom: 10px;">Make a Comment!</button>
+                </a>
+            </div>
+            <div>
                 <a href="episodes.php">
                     <button class="btn btn-primary btn-block border rounded d-inline-flex flex-shrink-1 flex-fill justify-content-between align-items-center align-content-center justify-content-sm-center align-items-sm-start" data-bs-hover-animate="pulse" type="button" style="background-color: rgb(218,4,3);margin: 0px;margin-top: 10px;margin-bottom: 10px;">Back To Episodes</button>
                 </a>

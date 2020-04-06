@@ -1,24 +1,30 @@
-<!--------------------------------------------------
-    Final Project: Big Brother Social Network      -
-    Name: Josh Lavallee                            -
-    Course: WEBD-2006 Section 1                    -
-    Date: March 21st/2020                          -
-    Description: Header Constant                   -
----------------------------------------------------->
-
 <?PHP
     require('connect.php');
+    require('upload.php');
+
+    if(isset($_SESSION["LoggedIn"]))
+    {       
+        $getInfoQuery = "SELECT *
+                         FROM users
+                         WHERE username = :username";
+
+        $getInfoStatement = $db->prepare($getInfoQuery);
+        $getInfoStatement->bindValue('username', $_SESSION["Username"], PDO::PARAM_STR);
+        $getInfoStatement->execute();
+        $userInfo = $getInfoStatement->fetch();
+    }
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>WebProject</title>
+    <title><?= $title ?></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="assets/css/styles.min.css">
@@ -29,7 +35,7 @@
     <nav class="navbar navbar-dark navbar-expand-md sticky-top navigation-clean-button" style="background-color: rgba(0,0,0,0.83);">
         <div class="container">
             <a class="navbar-brand" href="index.php" style="color: rgb(255,255,255);">
-                <img data-bs-hover-animate="pulse" src="assets/img/logo.png" style="width: 121px;">
+                <img data-bs-hover-animate="pulse" src="assets/img/logo.png" alt="logo" style="width: 121px;">
             </a>
             <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1">
                 <span class="sr-only">Toggle navigation</span>
@@ -45,8 +51,8 @@
                 </ul>
                 <?PHP if(isset($_SESSION["LoggedIn"])): ?>
                     <span class="navbar-text actions">
-                        <a href="myprofile.php">                   
-                            <img class="rounded-circle" src="" width="60px" height="60px"  role="button" data-bs-hover-animate="jello" style="background-color: rgb(218,4,3);padding: 2px;" />
+                        <a href="myprofile.php" role="button">                   
+                            <img class="rounded-circle" src="assets\img\profilepics\<?= $userInfo["profile_photo"] ?>" width="60px" height="60px" data-bs-hover-animate="jello" style="background-color: rgb(218,4,3);padding: 2px;" />
                         </a>
                         <a class="btn btn-light action-button" role="button" data-bs-hover-animate="jello" href="logout.php" style="background-color: rgb(218,4,3);">Log Out</a>
                     </span>

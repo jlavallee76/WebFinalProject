@@ -1,11 +1,3 @@
-<!--------------------------------------------------
-    Final Project: Big Brother Social Network      -
-    Name: Josh Lavallee                            -
-    Course: WEBD-2006 Section 1                    -
-    Date: March 21st/2020                          -
-    Description: Footer Constant                   -
----------------------------------------------------->
-
 <div class="footer-dark" style="background-color: rgba(0,0,0,0.83);">
     <footer>
         <div class="container">
@@ -49,10 +41,9 @@
         </div>
     </footer>
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/script.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/script.min.js"></script>
 </body>
 
 </html>
