@@ -42,7 +42,7 @@
                             <?PHP endif ?>
                         </div>
                             <div class="col-sm-4">
-                                <div class="d-none d-md-block iphone-mockup">
+                                <div>
                                     <img class="device" src="assets/img/episodepics/<?= $episode['episode_photo'] ?>">
                                 </div>
                             </div>

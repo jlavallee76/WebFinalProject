@@ -31,7 +31,7 @@
                         <div class="col-md-4 relative">
                             <div class="avatar">
                                 <div class="avatar-bg center">
-                                    <img class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                                    
                                     <img class="rounded-circle" src="assets\img\profilepics\<?= $userInfo["profile_photo"] ?>" width="195px" height="200px" style="background-color: rgb(218,4,3);padding: 2px;" />
                                 </div>
                                 <hr>

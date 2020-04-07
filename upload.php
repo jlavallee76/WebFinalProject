@@ -1,12 +1,5 @@
 <?PHP
-        $getInfoQuery = "SELECT *
-        FROM users
-        WHERE username = :username";
 
-$getInfoStatement = $db->prepare($getInfoQuery);
-$getInfoStatement->bindValue('username', $_SESSION["Username"], PDO::PARAM_STR);
-$getInfoStatement->execute();
-$userInfo = $getInfoStatement->fetch();
     if(isset($_POST['postnewepisode']) && (!empty($_POST['episodename']) && (!empty($_POST['airdate']))))
     {
         $handle = new \Verot\Upload\Upload($_FILES['image_field']);
@@ -15,7 +8,7 @@ $userInfo = $getInfoStatement->fetch();
         {
             $handle->file_new_name_body   = 'episode_pic';
             $handle->image_resize         = true;
-            $handle->image_x              = 100;
+            $handle->image_x              = 400;
             $handle->image_ratio_y        = true;
             $handle->process('E:\OneDrive - Red River College\TERM 3\Web Development 2\WebFinalProject\assets\img\episodepics');
             
@@ -57,7 +50,7 @@ $userInfo = $getInfoStatement->fetch();
         {
             $handle->file_new_name_body   = 'profile_pic';
             $handle->image_resize         = true;
-            $handle->image_x              = 100;
+            $handle->image_x              = 150;
             $handle->image_ratio_y        = true;
             $handle->process('E:\OneDrive - Red River College\TERM 3\Web Development 2\WebFinalProject\assets\img\profilepics');
             
