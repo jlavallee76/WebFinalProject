@@ -32,12 +32,14 @@
                                 <h2 style="color: rgb(22,23,25);font-size: 38px;">Episode <?=" " . $episodenumber . ": " . $episode["episodename"] ?></h2>
                                 <p style="height: 68px;color: rgb(22,23,25);font-size: 21px;">Air Date: <?= $episode["airdate"] ?><br>Events: <?= $episode["event"] ?><br></p>
                             </div>
-                            <a href="upload.php">
+                            <a href="discussion.php?episode=<?= $episode['episodeID'] ?>">
                                 <button class="btn btn-primary btn-lg border rounded" data-bs-hover-animate="pulse" type="button" style="width: 130px;height: 50px;background-color: rgb(218,4,3);margin: 0px;margin-right: 10px;">View Posts</button>
                             </a>
-                            <a href="createpost.php?episode=<?= $episode['episodeID'] ?>">
-                                <button name="makecomment" class="btn btn-primary btn-lg border rounded" data-bs-hover-animate="pulse" type="button" style="width: 130px;height: 50px;background-color: rgb(218,4,3);">Comment</button>
-                            </a>
+                            <?PHP if(isset($_SESSION["LoggedIn"])) : ?>
+                                <a href="createpost.php?episode=<?= $episode['episodeID'] ?>">
+                                    <button name="makecomment" class="btn btn-primary btn-lg border rounded" data-bs-hover-animate="pulse" type="button" style="width: 130px;height: 50px;background-color: rgb(218,4,3);">Comment</button>
+                                </a>
+                            <?PHP endif ?>
                         </div>
                             <div class="col-sm-4">
                                 <div class="d-none d-md-block iphone-mockup">

@@ -1,6 +1,5 @@
 <?PHP
     require('connect.php');
-    require('upload.php');
 
     if(isset($_SESSION["LoggedIn"]))
     {       
@@ -12,7 +11,11 @@
         $getInfoStatement->bindValue('username', $_SESSION["Username"], PDO::PARAM_STR);
         $getInfoStatement->execute();
         $userInfo = $getInfoStatement->fetch();
+
+        require('upload.php');
     }
+
+
 ?>
 
 <!DOCTYPE html>

@@ -11,25 +11,38 @@
 
     session_start();
     require('requires/header.php');
+
+    $episode = $_GET['episode'];
+
+    $getDiscussionQuery = "SELECT *
+                           FROM comments
+                           WHERE episodeID = $episode
+                           ORDER BY dateposted DESC";
+
+    $getDiscussionStatement = $db->prepare($getDiscussionQuery);
+    $getDiscussionStatement->execute();
+    $comments = $getDiscussionStatement->fetchAll();
+
+    
 ?>
     <main>
         <div class="container">
             <h2 class="text-center">$Name_Of_Episode</h2>
-            
+            <?PHP foreach ($comments as $comment) : ?>
             <div class="card">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-2"><img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" />
-                            <p class="text-secondary text-center">$timeposted</p>
+                            <p class="text-secondary text-center"><?= $comment["userID"] ?> <br> on <?= $comment["dateposted"] ?></p>
                         </div>
                         <div class="col-md-10">
                             <p>
-                                <a class="float-left" href="#"><strong>$PosterUserName</strong></a>
+                                <strong><?= $comment["subject"] ?></strong>
                             </p>
                             
                             <div class="clearfix"></div>
                             
-                            <p>$PosterUserComments</p>
+                            <p><?= $comment["message"] ?></p>
                             
                             <p>
                                 <a class="float-right btn btn-outline-danger ml-2">
@@ -57,10 +70,13 @@
                     </div>
                 </div>
             </div>
+            <?PHP endforeach ?>
             <div>
-                <a href="createpost.php">
-                    <button class="btn btn-primary btn-block border rounded d-inline-flex flex-shrink-1 flex-fill justify-content-between align-items-center align-content-center justify-content-sm-center align-items-sm-start" data-bs-hover-animate="pulse" type="button" style="background-color: rgb(218,4,3);margin: 0px;margin-top: 10px;margin-bottom: 10px;">Make a Comment!</button>
-                </a>
+                <?PHP if(isset($_SESSION["LoggedIn"])) : ?>
+                    <a href="createpost.php?episode=<?= $episode ?>">
+                        <button class="btn btn-primary btn-block border rounded d-inline-flex flex-shrink-1 flex-fill justify-content-between align-items-center align-content-center justify-content-sm-center align-items-sm-start" data-bs-hover-animate="pulse" type="button" style="background-color: rgb(218,4,3);margin: 0px;margin-top: 10px;margin-bottom: 10px;">Make a Comment!</button>
+                    </a>
+                <?PHP endif ?>
             </div>
             <div>
                 <a href="episodes.php">

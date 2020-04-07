@@ -1,4 +1,12 @@
 <?PHP
+        $getInfoQuery = "SELECT *
+        FROM users
+        WHERE username = :username";
+
+$getInfoStatement = $db->prepare($getInfoQuery);
+$getInfoStatement->bindValue('username', $_SESSION["Username"], PDO::PARAM_STR);
+$getInfoStatement->execute();
+$userInfo = $getInfoStatement->fetch();
     if(isset($_POST['postnewepisode']) && (!empty($_POST['episodename']) && (!empty($_POST['airdate']))))
     {
         $handle = new \Verot\Upload\Upload($_FILES['image_field']);

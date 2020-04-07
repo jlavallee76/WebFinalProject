@@ -28,7 +28,7 @@
                          WHERE username = :username";
 
         $getUserStatement = $db->prepare($getUserQuery);
-        $getUserStatement->bindValue('username', $username, PDO::PARAM_STR);
+        $getUserStatement->bindValue(':username', $username, PDO::PARAM_STR);
         $getUserStatement->execute();
         $selectUser = $getUserStatement->fetch();
 
@@ -39,6 +39,7 @@
         elseif(password_verify($password, $selectUser['password']))
         {
             $_SESSION["LoggedIn"] = true;
+            $_SESSION["UserID"] = $selectUser['userID'];
             $_SESSION["ProfilePic"] = $selectUser['profile_photo'];
 
             header("Location: episodes.php");

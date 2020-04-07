@@ -10,7 +10,6 @@
     $title = 'MyProfile';
 
     session_start();
-    require('upload.php');
     require('requires/header.php');
 
     if($_SESSION["LoggedIn"])
