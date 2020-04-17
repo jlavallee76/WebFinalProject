@@ -3,11 +3,11 @@
     Name: Josh Lavallee                            -
     Course: WEBD-2006 Section 1                    -
     Date: March 21st/2020                          -
-    Description: Home Page                         -
+    Description: Create Post                         -
 ---------------------------------------------------->
 
 <?PHP
-    $title = 'Home';
+    $title = 'Create Post';
 
     session_start();
     require('requires/header.php');
@@ -77,8 +77,6 @@
                         <div class="form-group">
                             <div class="col-md-12">
                                 <button class="btn btn-primary btn-lg border rounded" data-bs-hover-animate="pulse" type="submit" style="width: 95px;height: 50px;background-color: rgb(218,4,3);margin: 10px;margin-right: 6px;margin-top: 5px;">Post</button>
-                                <button class="btn btn-primary btn-lg border rounded" data-bs-hover-animate="pulse" type="button" style="width: 95px;height: 50px;background-color: rgb(218,4,3);margin: 10px;margin-right: 6px;margin-top: 5px;">Edit</button>
-                                <button class="btn btn-primary btn-lg border rounded" data-bs-hover-animate="pulse" type="button" style="width: 95px;height: 50px;background-color: rgb(218,4,3);margin: 10px;margin-right: 6px;margin-top: 5px;">Delete</button>
                             </div>
                         </div>
                     </form>

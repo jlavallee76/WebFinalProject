@@ -18,6 +18,12 @@
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $_SESSION["Username"] = $username;
 
+    $fname = filter_input(INPUT_POST, 'fname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $_SESSION["FirstName"] = $fname;
+
+    $lname = filter_input(INPUT_POST, 'lname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $_SESSION["LastName"] = $lname;
+
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $_SESSION["Email"] = $email;
 
@@ -70,12 +76,14 @@
             $password = password_hash($password, PASSWORD_DEFAULT); //Encrypting the users password.
             
 
-            $createUserQuery = "INSERT INTO users (username, email, password, date_created) 
-                                VALUES (:username, :email, :password, NOW())";
+            $createUserQuery = "INSERT INTO users (username, fname, lname, email, password, date_created) 
+                                VALUES (:username, :fname, :lname, :email, :password, NOW())";
 
 
             $createUserStatement = $db->prepare($createUserQuery);
             $createUserStatement->bindValue(':username', $username);
+            $createUserStatement->bindValue(':fname', $fname);
+            $createUserStatement->bindValue(':lname', $lname);
             $createUserStatement->bindValue(':email', $email);
             $createUserStatement->bindValue(':password', $password);
 
@@ -97,7 +105,7 @@
                     <h2 class="text-center" style="color: rgb(218,4,3);"><strong>Create</strong> an account.</h2>
                     
                     <div class="form-group">
-                        <input class="form-control" type="text" name="username" placeholder="Username" required="" minlength="6" maxlength="20" 
+                        <input class="form-control" type="text" name="username" placeholder="Username" required="" minlength="6" maxlength="25" 
                         <?PHP if(isset($_SESSION["Username"])) : ?>
                             value="<?= $_SESSION["Username"]?>"
                         <?PHP endif ?>
@@ -105,6 +113,22 @@
                         <?PHP if(in_array("user_exists", $errors)) : ?>
                             <p style="color: rgb(218,4,3);">This username has been taken.<p>
                         <?PHP endif ?>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="fname" placeholder="First Name" required="" minlength="1" maxlength="50" 
+                        <?PHP if(isset($_SESSION["FirstName"])) : ?>
+                            value="<?= $_SESSION["FirstName"]?>"
+                        <?PHP endif ?>
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="lname" placeholder="Last Name" required="" minlength="1" maxlength="50" 
+                        <?PHP if(isset($_SESSION["LastName"])) : ?>
+                            value="<?= $_SESSION["LastName"]?>"
+                        <?PHP endif ?>
+                        >
                     </div>
 
                     <div class="form-group">

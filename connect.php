@@ -1,11 +1,3 @@
-<!--------------------------------------------------
-    Final Project: Big Brother Social Network      -
-    Name: Josh Lavallee                            -
-    Course: WEBD-2006 Section 1                    -
-    Date: March 22nd/2020                          -
-    Description: Connection to Database            -
----------------------------------------------------->
-
 <?php
     require_once("vendor/autoload.php");
 

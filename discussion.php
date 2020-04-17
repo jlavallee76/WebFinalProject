@@ -12,7 +12,9 @@
     session_start();
     require('requires/header.php');
 
-    $episode = $_GET['episode'];
+    
+    $episode = filter_input(INPUT_GET, 'episode', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $episode = filter_var($episode, FILTER_VALIDATE_INT);
 
     $getDiscussionQuery = "SELECT *
                            FROM comments
@@ -23,11 +25,21 @@
     $getDiscussionStatement->execute();
     $comments = $getDiscussionStatement->fetchAll();
 
+    $getEpisodesQuery = "SELECT episodename
+                         FROM episodes
+                         WHERE episodeID = $episode";
+
+    $getEpisodesStatement = $db->prepare($getEpisodesQuery);
+    $getEpisodesStatement->execute();
+    $episodeInfo = $getEpisodesStatement->fetch();
+
     
 ?>
     <main>
         <div class="container">
-            <h2 class="text-center">$Name_Of_Episode</h2>
+            <br>
+            <h2 class="text-center">Episode <?= $episode ?>: <?= $episodeInfo["episodename"] ?></h2>
+            <br>
             <?PHP foreach ($comments as $comment) : ?>
             <div class="card">
                 <div class="card-body">
@@ -44,14 +56,20 @@
                             
                             <p><?= $comment["message"] ?></p>
                             
-                            <p>
-                                <a class="float-right btn btn-outline-danger ml-2">
-                                    <i class="fa fa-reply"></i> Reply
-                                </a>
-                                <a class="float-right btn text-white btn-danger">
-                                    <i class="fa fa-heart"></i> Like
-                                </a>
-                            </p>
+                            <?PHP if(isset($_SESSION["LoggedIn"])) : ?>
+
+                                <?PHP if($_SESSION["LoggedIn"]  && ($comment["userID"] == $_SESSION["UserID"]))  : ?>
+                                    <p>
+                                        <button name="editcomment" class="float-right btn btn-outline-danger ml-2" data-bs-hover-animate="pulse" type="button" style="width: 130px;height: 50px;background-color: rgb(218,4,3);" onclick="location.href='/WebFinalProject/editpost.php?episode=<?= $episode ?>&comment=<?= $comment['commentID'] ?>'">Edit</button>
+                                    </p>
+                                <?PHP elseif($_SESSION["LoggedIn"]  && ($comment["userID"] != $_SESSION["UserID"])) : ?>
+                                    <p>
+                                        <a class="float-right btn btn-outline-danger ml-2">
+                                            <i class="fa fa-reply"></i> Reply
+                                        </a>
+                                    </p>
+                                <?PHP endif ?>
+                            <?PHP endif ?>
                         </div>
                     </div>
                     <div class="card card-inner">
@@ -62,8 +80,8 @@
                                 </div>
                                 
                                 <div class="col-md-10">
-                                    <p><a href="#"><strong>$CommenterUserName</strong></a></p>
-                                    <p>$CommenterUserComments</p>
+                                    <p><strong>$Subject</strong></p>
+                                    <p>$Comments</p>
                                 </div>
                             </div>
                         </div>

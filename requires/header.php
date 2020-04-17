@@ -55,7 +55,7 @@
                 <?PHP if(isset($_SESSION["LoggedIn"])): ?>
                     <span class="navbar-text actions">
                         <a href="myprofile.php" role="button">                   
-                            <img class="rounded-circle" src="assets\img\profilepics\<?= $userInfo["profile_photo"] ?>" width="60px" height="60px" data-bs-hover-animate="jello" style="background-color: rgb(218,4,3);padding: 2px;" />
+                            <img class="rounded-circle" src="assets\img\profilepics\<?= $userInfo["profile_photo"] ?>" alt="profilepic" width="60px" height="60px" data-bs-hover-animate="jello" style="background-color: rgb(218,4,3);padding: 2px;" />
                         </a>
                         <a class="btn btn-light action-button" role="button" data-bs-hover-animate="jello" href="logout.php" style="background-color: rgb(218,4,3);">Log Out</a>
                     </span>
