@@ -39,6 +39,7 @@
         elseif(password_verify($password, $selectUser['password']))
         {
             $_SESSION["LoggedIn"] = true;
+            $_SESSION["role"] = $selectUser['role'];
             $_SESSION["UserID"] = $selectUser['userID'];
             $_SESSION["ProfilePic"] = $selectUser['profile_photo'];
 

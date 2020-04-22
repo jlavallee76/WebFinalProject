@@ -8,42 +8,44 @@
 
 <?PHP
     $title = 'Create Post';
+    $errors = array();
 
     session_start();
     require('requires/header.php');
+    require "captcha.php";
 
     $episode = $_GET['episode'];
 
     if($_POST && (!empty($_POST['subject']) && (!empty($_POST['message']))))
 	{
-        /*$getInfoQuery = "SELECT *
-                         FROM users
-                         WHERE username = :username";
-
-        $getInfoStatement = $db->prepare($getInfoQuery);
-        $getInfoStatement->bindValue(':username', $_SESSION["Username"], PDO::PARAM_STR);
-        $getInfoStatement->execute();
-        $userInfo = $getInfoStatement->fetch();*/
-
         $userID = $_SESSION["UserID"];
 
         $subject = filter_input(INPUT_POST, 'subject', FILTER_SANITIZE_FULL_SPECIAL_CHARS);   
         $message = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-        $createPostQuery = "INSERT INTO comments (userID, episodeID, subject, message, dateposted) 
-                            VALUES (:userID, :episodeID, :subject, :message, NOW())";
+        $userInput = filter_input(INPUT_POST, 'captchacompare', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
 
-        $createPostStatement = $db->prepare($createPostQuery);
-        $createPostStatement->bindValue(':userID', $userID);
-        $createPostStatement->bindValue(':episodeID', $episode);
-        $createPostStatement->bindValue(':subject', $subject);
-        $createPostStatement->bindValue(':message', $message);
+        if($builder->testPhrase($userInput)) 
+        {
+            $createPostQuery = "INSERT INTO comments (userID, episodeID, subject, message, dateposted) 
+            VALUES (:userID, :episodeID, :subject, :message, NOW())";
 
-        $createPostStatement->execute();
+            $createPostStatement = $db->prepare($createPostQuery);
+            $createPostStatement->bindValue(':userID', $userID);
+            $createPostStatement->bindValue(':episodeID', $episode);
+            $createPostStatement->bindValue(':subject', $subject);
+            $createPostStatement->bindValue(':message', $message);
 
-        header("Location: discussion.php?episode=$episode");
-        exit;  
+            $createPostStatement->execute();
+
+            header("Location: discussion.php?episode=$episode");
+            exit;  
+        }
+        else 
+        {
+            array_push($errors, "incorrect_captcha");
+        }
     }
 
 ?>
@@ -76,6 +78,11 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-12">
+                                <?PHP if(in_array("incorrect_captcha", $errors)) : ?>
+                                    <p style="color: rgb(218,4,3);">Incorrect captcha, please try again.<p>
+                                <?PHP endif ?>
+                                <img src="<?php echo $builder->inline(); ?>"/>
+                                <input class="form-control" type="text" autocomplete="off" placeholder="captcha" name="captchacompare" required="" style="background-color: rgba(0,0,0,0.1); color:black;">
                                 <button class="btn btn-primary btn-lg border rounded" data-bs-hover-animate="pulse" type="submit" style="width: 95px;height: 50px;background-color: rgb(218,4,3);margin: 10px;margin-right: 6px;margin-top: 5px;">Post</button>
                             </div>
                         </div>

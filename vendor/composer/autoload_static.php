@@ -6,6 +6,28 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit792d8ed755115e50ac55f17c4b121e8c
 {
+    public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Symfony\\Component\\Finder\\' => 25,
+        ),
+        'G' => 
+        array (
+            'Gregwar\\' => 8,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Symfony\\Component\\Finder\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/finder',
+        ),
+        'Gregwar\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/gregwar/captcha/src/Gregwar',
+        ),
+    );
+
     public static $classMap = array (
         'Verot\\Upload\\Upload' => __DIR__ . '/..' . '/verot/class.upload.php/src/class.upload.php',
     );
@@ -13,6 +35,8 @@ class ComposerStaticInit792d8ed755115e50ac55f17c4b121e8c
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit792d8ed755115e50ac55f17c4b121e8c::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit792d8ed755115e50ac55f17c4b121e8c::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInit792d8ed755115e50ac55f17c4b121e8c::$classMap;
 
         }, null, ClassLoader::class);

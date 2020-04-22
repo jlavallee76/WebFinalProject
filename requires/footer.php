@@ -44,6 +44,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/script.min.js"></script>
+
+    <script>
+        var quill = new Quill('#editor', {
+            modules: {
+                toolbar: [
+                    [{
+                        header: [1, 2, false]
+                    }],
+                    ['bold', 'italic', 'underline'],
+                    ['code-block']
+                ]
+            },
+            theme: 'snow' // or 'bubble'
+        });
+    </script>
+    <script>
+        var form = document.querySelector("#blog");
+        form.onsubmit = function() {
+            // Populate hidden form on submit
+            var content = document.querySelector('input[name=content]');
+            content.value = quill.getText();
+
+            console.log("Submitted", $(form).serialize(), $(form).serializeArray());
+        };
+    </script>
 </body>
 
 </html>

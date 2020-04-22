@@ -58,7 +58,7 @@
                             
                             <?PHP if(isset($_SESSION["LoggedIn"])) : ?>
 
-                                <?PHP if($_SESSION["LoggedIn"]  && ($comment["userID"] == $_SESSION["UserID"]))  : ?>
+                                <?PHP if($_SESSION["LoggedIn"]  && ($comment["userID"] == $_SESSION["UserID"]) || $_SESSION["LoggedIn"] && $_SESSION["role"] == 1)  : ?>
                                     <p>
                                         <button name="editcomment" class="float-right btn btn-outline-danger ml-2" data-bs-hover-animate="pulse" type="button" style="width: 130px;height: 50px;background-color: rgb(218,4,3);" onclick="location.href='/WebFinalProject/editpost.php?episode=<?= $episode ?>&comment=<?= $comment['commentID'] ?>'">Edit</button>
                                     </p>
